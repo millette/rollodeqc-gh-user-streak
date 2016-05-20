@@ -4,6 +4,10 @@
 [![Dependency Status](https://gemnasium.com/badges/github.com/millette/rollodeqc-gh-user-streak.svg)](https://gemnasium.com/github.com/millette/rollodeqc-gh-user-streak)
 > Fetch github user commit streak.
 
+Since [Github changed the users profiles](https://github.com/blog/2173-more-contributions-on-your-profile)
+to put more emphasis on the present and less on history, they removed the popular commit streak count.
+This little more brings it back.
+
 ## Install
 ```
 $ npm install --save rollodeqc-gh-user-streak
