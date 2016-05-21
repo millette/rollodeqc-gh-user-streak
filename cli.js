@@ -28,6 +28,7 @@ const rollodeqcGhUserStreak = require('./')
 
 // npm
 const meow = require('meow')
+const chalk = require('chalk')
 const sort = require('lodash.sortby')
 
 const cli = meow([
@@ -48,9 +49,9 @@ rollodeqcGhUserStreak(cli.input[0] || 'millette')
       return
     }
     const latest = sort(response.streaks, 'begin').reverse()[0]
-    console.log(`Longest streak in a year: ${response.streaks[0].commits.length} days (${response.streaks[0].commits.reduce((p, c) => p + c)} commits), started ${response.streaks[0].begin}.`)
+    console.log(chalk.green(`Longest streak in a year: ${response.streaks[0].commits.length} days (${response.streaks[0].commits.reduce((p, c) => p + c)} commits), started ${response.streaks[0].begin}.`))
     if (response.streaks[0].overlaps) {
-      console.log('Note that the streak may be longer since it started at least 365 days ago.')
+      console.log(chalk.red.bold('Note that the streak may be longer since it started at least 365 days ago.'))
     }
     if (latest.begin !== response.streaks[0].begin) {
       console.log(`Latest streak: ${latest.commits.length} days (${latest.commits.reduce((p, c) => p + c)} commits), started ${latest.begin}.`)
