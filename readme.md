@@ -28,13 +28,6 @@ Type: `string`
 
 Lorem ipsum.
 
-#### options
-##### foo
-Type: `boolean`<br>
-Default: `false`
-
-Lorem ipsum.
-
 ## CLI
 ```
 $ npm install --global rollodeqc-gh-user-streak
