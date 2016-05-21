@@ -51,20 +51,22 @@ const findStreaks = (contribs) => {
   let lastDay = 0
   contribs.forEach((contrib) => {
     const dayN = Math.round(new Date(contrib.date).getTime() / 86400000)
-    if (dayN - lastDay > 1) {
-      if (g && g.length > 1) { s.push(g) }
-      g = [ contrib ]
-    } else if (dayN - lastDay === 1) {
-      g.push(contrib)
-    } else {
+    if (dayN - lastDay <= 0) {
       throw(new Error('Contribs should be ordered by date in ascending order.'))
     }
+    if (dayN - lastDay > 1) {
+      if (g && g.length) { s.push(g) }
+      g = [ ]
+    }
+    g.push(contrib)
     lastDay = dayN
   })
   if (g && g.length > 1) { s.push(g) }
+  // sort by streak length and number of commits to break ties
   return sort(sort(
-    s.map((streak) => { return { begin: streak[0].date, commits: streak.map((day) => day.count) } }),
-    (x) => x.commits.reduce((p, c) => p + c, 0)
+    s.map((streak) => {
+      return { begin: streak[0].date, commits: streak.map((day) => day.count) }
+    }), (x) => x.commits.reduce((p, c) => p + c, 0)
   ), (x) => x.commits.length).reverse()
 }
 

@@ -23,26 +23,35 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 'use strict'
-const meow = require('meow')
+
 const rollodeqcGhUserStreak = require('./')
+
+// npm
+const meow = require('meow')
+const sort = require('lodash.sortby')
 
 const cli = meow([
   'Usage',
-  '  $ rollodeqc-gh-user-streak [input]',
-  '',
-  'Options',
-  '  --foo  Lorem ipsum. [Default: false]',
+  '  $ rollodeqc-gh-user-streak [username]',
   '',
   'Examples',
   '  $ rollodeqc-gh-user-streak',
-  '  unicorns & rainbows',
-  '  $ rollodeqc-gh-user-streak ponies',
-  '  ponies & rainbows'
+  '  ... stats for millette',
+  '  $ rollodeqc-gh-user-streak bob',
+  '  ... stats for bob'
 ])
 
-rollodeqcGhUserStreak(cli.input[0] || 'unicorns')
+rollodeqcGhUserStreak(cli.input[0] || 'millette')
   .then((response) => {
-    console.log(JSON.stringify(response, null, ' '))
+    if (!response.streaks.length) {
+      console.log('No commits in last 365 days.')
+      return
+    }
+    const latest = sort(response.streaks, 'begin').reverse()[0]
+    console.log(`Longest streak in last 365 days: ${response.streaks[0].commits.length} days (${response.streaks[0].commits.reduce((p, c) => p + c)} commits), started ${response.streaks[0].begin}.`)
+    if (latest.begin !== response.streaks[0].begin) {
+      console.log(`Latest streak: ${latest.commits.length} days (${latest.commits.reduce((p, c) => p + c)} commits), started ${latest.begin}.`)
+    }
   })
   .catch((e) => {
     console.error('ERROR:', e)
