@@ -42,5 +42,8 @@ const cli = meow([
 
 rollodeqcGhUserStreak(cli.input[0] || 'unicorns')
   .then((response) => {
-    console.log(response)
+    console.log(JSON.stringify(response, null, ' '))
+  })
+  .catch((e) => {
+    console.error('ERROR:', e)
   })
