@@ -34,7 +34,7 @@ const dailyContribs = (str) => sort(flatten(str.match(weeksRe).map((days) => {
   const counts = []
   let match
   let cnt
-  while (match = daysRe.exec(days)) {
+  while ((match = daysRe.exec(days))) {
     cnt = parseInt(match[1], 10)
     if (cnt) { counts.push({ count: cnt, date: match[2] }) }
   }
@@ -51,9 +51,6 @@ const findStreaks = (contribs) => {
   let lastDay = 0
   contribs.forEach((contrib) => {
     const dayN = Math.round(new Date(contrib.date).getTime() / 86400000)
-    if (dayN - lastDay <= 0) {
-      throw(new Error('Contribs should be ordered by date in ascending order.'))
-    }
     if (dayN - lastDay > 1) {
       if (g && g.length) { s.push(g) }
       g = [ ]
