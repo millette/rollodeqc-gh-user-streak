@@ -8,6 +8,10 @@ Since [Github changed the users profiles](https://github.com/blog/2173-more-cont
 to put more emphasis on the present and less on history, they removed the popular commit streak count.
 This little more brings it back.
 
+## Known limitations
+We're only looking at the last 365 days. If you've been streaking
+for more than a year, congratulation! But you won't see the result here, sorry.
+
 ## Install
 ```
 $ npm install --save rollodeqc-gh-user-streak
