@@ -42,21 +42,30 @@ const cli = meow([
   '  ... stats for bob'
 ])
 
-rollodeqcGhUserStreak(cli.input[0] || 'millette')
-  .then((response) => {
-    if (!response.streaks.length) {
-      console.log('No commits in last 365 days.')
-      return
-    }
-    const latest = sort(response.streaks, 'begin').reverse()[0]
-    console.log(chalk.green(`Longest streak in a year: ${response.streaks[0].commits.length} days (${response.streaks[0].commits.reduce((p, c) => p + c)} commits), started ${response.streaks[0].begin}.`))
-    if (response.streaks[0].overlaps) {
-      console.log(chalk.red.bold('Note that the streak may be longer since it started at least 365 days ago.'))
-    }
-    if (latest.begin !== response.streaks[0].begin) {
-      console.log(`Latest streak: ${latest.commits.length} days (${latest.commits.reduce((p, c) => p + c)} commits), started ${latest.begin}.`)
-    }
-  })
-  .catch((e) => {
-    console.error('ERROR:', e)
-  })
+const username = cli.input[0] || 'millette'
+
+if (cli.flags.details) {
+  rollodeqcGhUserStreak.fetchContribs(username)
+    .then((response) => {
+      console.log(JSON.stringify(response, null, ' '))
+    })
+} else {
+  rollodeqcGhUserStreak(username)
+    .then((response) => {
+      if (!response.streaks.length) {
+        console.log('No commits in last 365 days.')
+        return
+      }
+      const latest = sort(response.streaks, 'begin').reverse()[0]
+      console.log(chalk.green(`Longest streak in a year: ${response.streaks[0].commits.length} days (${response.streaks[0].commits.reduce((p, c) => p + c)} commits), started ${response.streaks[0].begin}.`))
+      if (response.streaks[0].overlaps) {
+        console.log(chalk.red.bold('Note that the streak may be longer since it started at least 365 days ago.'))
+      }
+      if (latest.begin !== response.streaks[0].begin) {
+        console.log(`Latest streak: ${latest.commits.length} days (${latest.commits.reduce((p, c) => p + c)} commits), started ${latest.begin}.`)
+      }
+    })
+    .catch((e) => {
+      console.error('ERROR:', e)
+    })
+}

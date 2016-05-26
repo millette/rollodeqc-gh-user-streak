@@ -43,9 +43,11 @@ const counter = (days) => {
 
 const dailyContribs = (str) => sort(flatten(str.match(weeksRe).map(counter)), 'date')
 
-const fetchContribs = (username) => got(`https://github.com/users/${username}/contributions`)
-  .then((response) => response.body)
-  .then((body) => dailyContribs(body))
+const fetchContribs = (username) => {
+  return got(`https://github.com/users/${username}/contributions`)
+    .then((response) => response.body)
+    .then((body) => dailyContribs(body))
+}
 
 const findStreaks = (contribs) => {
   const s = []
@@ -76,14 +78,30 @@ const findStreaks = (contribs) => {
   ), (x) => x.commits.length).reverse()
 }
 
-module.exports = (username) => fetchContribs(username)
-  .then((contribs) => {
-    return {
-      streaks: findStreaks(contribs),
-      commitDays: contribs.filter((x) => x.count).length,
-      days: 365,
-      commits: contribs.reduce((p, c) => p + c.count, 0)
-    }
-  })
+module.exports = (username) => {
+  switch (typeof username) {
+    case 'string':
+      return fetchContribs(username)
+        .then((contribs) => {
+          return {
+            streaks: findStreaks(contribs),
+            commitDays: contribs.filter((x) => x.count).length,
+            days: 365,
+            commits: contribs.reduce((p, c) => p + c.count, 0)
+          }
+        })
+
+    case 'object':
+      return Promise.resolve({
+        streaks: findStreaks(username),
+        commitDays: username.filter((x) => x.count).length,
+        days: 365,
+        commits: username.reduce((p, c) => p + c.count, 0)
+      })
+
+    default:
+      return Promise.reject(new Error('The username argument should a string or an array of commits for a year.'))
+  }
+}
 
 module.exports.fetchContribs = fetchContribs
