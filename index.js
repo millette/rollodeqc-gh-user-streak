@@ -44,9 +44,7 @@ const counter = (days) => {
 const dailyContribs = (str) => {
   const sorted = sort(flatten(str.match(weeksRe).map(counter)), 'date')
   const dates = sorted.map((g) => g.date).slice(-2)
-
-  // console.log('DATES:', dates)
-  if ((Date.parse(dates[1]) - Date.parse(dates[0])) > 86405000) {
+  if ((Date.parse(dates[1]) - Date.parse(dates[0])) > 90005000) {
     // day skipped!
     return sorted.slice(1, -1)
   }
