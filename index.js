@@ -41,12 +41,27 @@ const counter = (days) => {
   return counts
 }
 
-const dailyContribs = (str) => sort(flatten(str.match(weeksRe).map(counter)), 'date')
+const dailyContribs = (str) => {
+  const sorted = sort(flatten(str.match(weeksRe).map(counter)), 'date')
+  const dates = sorted.map((g) => g.date).slice(-2)
+
+  // console.log('DATES:', dates)
+  if ((Date.parse(dates[1]) - Date.parse(dates[0])) > 86405000) {
+    // day skipped!
+    return sorted.slice(1, -1)
+  }
+
+  return sorted
+}
 
 const fetchContribs = (username) => {
-  return got(`https://github.com/users/${username}/contributions`)
-    .then((response) => response.body)
-    .then((body) => dailyContribs(body))
+  if (username.indexOf('<svg ') === -1) {
+    return got(`https://github.com/users/${username}/contributions`)
+      .then((response) => response.body)
+      .then((body) => dailyContribs(body))
+  } else {
+    return Promise.resolve(dailyContribs(username))
+  }
 }
 
 const findStreaks = (contribs) => {
