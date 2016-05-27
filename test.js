@@ -24,7 +24,7 @@ test('millette with details', async t => {
 
 test('overlapping', async t => {
   const result = await fn('ldionne')
-  t.is(result.streaks[0].commits.length, 30)
+  t.is(result.streaks[0].commits.length, 29)
   t.truthy(result.streaks[0].overlaps)
   t.truthy(result.commitDays > 250)
   t.truthy(result.commits > 1000)

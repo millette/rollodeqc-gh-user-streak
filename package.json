@@ -35,11 +35,11 @@
     "meow": "^3.7.0"
   },
   "devDependencies": {
-    "ava": "^0.14.0",
+    "ava": "^0.15.1",
     "babel-eslint": "^6.0.4",
     "coveralls": "^2.11.9",
     "nyc": "^6.4.4",
-    "standard": "^7.1.0"
+    "standard": "^7.1.1"
   },
   "standard": {
     "parser": "babel-eslint"
