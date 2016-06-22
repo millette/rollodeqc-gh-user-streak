@@ -6,11 +6,21 @@
 
 Since [Github changed the users profiles](https://github.com/blog/2173-more-contributions-on-your-profile)
 to put more emphasis on the present and less on history, they removed the popular commit streak count.
-This little more brings it back.
+This little script brings it back.
 
 ## Known limitations
 We're only looking at the last 365 days. If you've been streaking
 for more than a year, congratulation! But you won't see the result here, sorry.
+
+## New since version 0.2.0
+The cli now uses [update-notifier][] to let the user know about updates to this program.
+
+Users have the ability to opt-out of the update notifier by changing
+the optOut property to true in ~/.config/configstore/update-notifier-rollodeqc-gh-user-streak.json.
+The path is available in notifier.config.path.
+
+Users can also opt-out by setting the environment variable NO_UPDATE_NOTIFIER
+with any value or by using the --no-update-notifier flag on a per run basis.
 
 ## Install
 ```
@@ -56,3 +66,5 @@ $ rollodeqc-gh-user-streak --help
 
 ## License
 AGPL-v3 © [Robin Millette](http://robin.millette.info)
+
+[update-notifier]: <https://github.com/yeoman/update-notifier>
