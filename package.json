@@ -32,7 +32,8 @@
     "got": "^6.3.0",
     "lodash.flatten": "^4.2.0",
     "lodash.sortby": "^4.5.0",
-    "meow": "^3.7.0"
+    "meow": "^3.7.0",
+    "update-notifier": "^1.0.2"
   },
   "devDependencies": {
     "ava": "^0.15.1",

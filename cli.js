@@ -30,6 +30,9 @@ const rollodeqcGhUserStreak = require('./')
 const meow = require('meow')
 const chalk = require('chalk')
 const sort = require('lodash.sortby')
+const updateNotifier = require('update-notifier')
+
+updateNotifier({ pkg: require('./package.json') }).notify()
 
 const cli = meow([
   'Usage',
