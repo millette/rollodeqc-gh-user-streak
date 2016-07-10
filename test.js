@@ -31,7 +31,7 @@ test.skip('overlapping', async t => {
 })
 
 test('no commits', async t => {
-  const result = await fn('ubik23')
+  const result = await fn('Comarco')
   t.is(result.streaks.length, 0)
   t.is(result.commitDays, 0)
   t.is(result.commits, 0)
