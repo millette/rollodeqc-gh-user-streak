@@ -53,6 +53,7 @@ const dailyContribs = (str) => {
 }
 
 const fetchContribs = (username) => {
+  if (!username || typeof username !== 'string') { return Promise.reject(new Error('The username argument should a non-empty string.')) }
   if (username.indexOf('<svg ') === -1) {
     return got(`https://github.com/users/${username}/contributions`)
       .then((response) => response.body)
