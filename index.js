@@ -100,7 +100,7 @@ module.exports = (username) => {
           return {
             streaks: findStreaks(contribs),
             commitDays: contribs.filter((x) => x.count).length,
-            days: 365,
+            days: contribs.length,
             commits: contribs.reduce((p, c) => p + c.count, 0)
           }
         })
@@ -109,7 +109,7 @@ module.exports = (username) => {
       return Promise.resolve({
         streaks: findStreaks(username),
         commitDays: username.filter((x) => x.count).length,
-        days: 365,
+        days: username.length,
         commits: username.reduce((p, c) => p + c.count, 0)
       })
 
