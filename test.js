@@ -29,11 +29,18 @@ test.skip('overlapping', async t => {
   t.truthy(result.commits > 1000)
 })
 
-test('no commits', async t => {
+test.skip('no commits', async t => {
   const result = await fn('Comarco')
   t.is(result.streaks.length, 0)
   t.is(result.commitDays, 0)
   t.is(result.commits, 0)
+})
+
+test('some commits', async t => {
+  const result = await fn('Comarco')
+  t.is(result.streaks.length, 4)
+  t.is(result.commitDays, 6)
+  t.is(result.commits, 32)
 })
 
 test('buggy svg', t => {
