@@ -15,7 +15,7 @@
   },
   "scripts": {
     "lint": "standard",
-    "test": "standard && nyc ava",
+    "test": "standard && nyc ava --no-power-assert",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "files": [

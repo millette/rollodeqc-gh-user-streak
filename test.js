@@ -6,7 +6,7 @@ import fs from 'fs'
 
 test('millette', async t => {
   const result = await fn('millette')
-  t.falsy(result.streaks[0].overlaps)
+  t.truthy(result.streaks[0].overlaps)
   t.truthy(result.streaks[0].commits.length > 50)
   t.truthy(result.commitDays > 70)
   t.truthy(result.commits > 500)
@@ -15,7 +15,7 @@ test('millette', async t => {
 test('millette with details', async t => {
   const resulta = await fn.fetchContribs('millette')
   const result = await fn(resulta)
-  t.falsy(result.streaks[0].overlaps)
+  t.truthy(result.streaks[0].overlaps)
   t.truthy(result.streaks[0].commits.length > 50)
   t.truthy(result.commitDays > 70)
   t.truthy(result.commits > 500)
@@ -61,5 +61,5 @@ test('ok svg', t => {
   })
 })
 
-test('bad username', async t => await t.throws(fn('millette666'), 'Response code 404 (Not Found)'))
-test('bad username type', async t => await t.throws(fn(666), 'The username argument should a string or an array of commits for a year.'))
+test('bad username', t => t.throws(fn('millette666'), 'Response code 404 (Not Found)'))
+test('bad username type', t => t.throws(fn(666), 'The username argument should a string or an array of commits for a year.'))
