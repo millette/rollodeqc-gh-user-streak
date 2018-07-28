@@ -58,9 +58,8 @@ const fetchContribs = (username) => {
     return got(`https://github.com/users/${username}/contributions`)
       .then((response) => response.body)
       .then((body) => dailyContribs(body))
-  } else {
-    return Promise.resolve(dailyContribs(username))
   }
+  return Promise.resolve(dailyContribs(username))
 }
 
 const findStreaks = (contribs) => {
