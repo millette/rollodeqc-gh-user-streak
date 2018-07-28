@@ -37,12 +37,8 @@
   },
   "devDependencies": {
     "ava": "^0.18.2",
-    "babel-eslint": "^7.2.3",
     "coveralls": "^2.13.1",
     "nyc": "^11.0.2",
     "standard": "^11.0.1"
-  },
-  "standard": {
-    "parser": "babel-eslint"
   }
 }
