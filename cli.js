@@ -34,20 +34,28 @@ const updateNotifier = require('update-notifier')
 
 updateNotifier({ pkg: require('./package.json') }).notify()
 
-const cli = meow([
-  'Usage',
-  '  $ rollodeqc-gh-user-streak [username] --details',
-  '',
-  'Note that --details must be the last argument.',
-  '',
-  'Examples',
-  '  $ rollodeqc-gh-user-streak',
-  '  ... stats for millette',
-  '  $ rollodeqc-gh-user-streak bob',
-  '  ... stats for bob',
-  '  $ rollodeqc-gh-user-streak bob --details',
-  '  ... detailed stats for bob'
-])
+const cli = meow(`
+Usage
+  $ rollodeqc-gh-user-streak [username] --details
+
+Options
+  --details  -d   Output every streak. [Default: false]
+
+Examples
+  $ rollodeqc-gh-user-streak
+  ... stats for millette
+  $ rollodeqc-gh-user-streak bob
+  ... stats for bob
+  $ rollodeqc-gh-user-streak bob --details
+  ... detailed stats for bob
+`, {
+  flags: {
+    details: {
+      type: 'boolean',
+      alias: 'd'
+    }
+  }
+})
 
 const username = cli.input[0] || 'millette'
 

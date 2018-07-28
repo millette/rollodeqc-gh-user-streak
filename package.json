@@ -32,7 +32,7 @@
     "got": "^8.3.2",
     "lodash.flatten": "^4.4.0",
     "lodash.sortby": "^4.7.0",
-    "meow": "^3.7.0",
+    "meow": "^5.0.0",
     "update-notifier": "^2.5.0"
   },
   "devDependencies": {

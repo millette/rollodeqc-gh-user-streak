@@ -54,13 +54,15 @@ $ rollodeqc-gh-user-streak --help
     rollodeqc-gh-user-streak [input]
 
   Options
-    --foo  Lorem ipsum. [Default: false]
+    --details  -d   Output every contribution. [Default: false]
 
   Examples
     $ rollodeqc-gh-user-streak
     unicorns & rainbows
     $ rollodeqc-gh-user-streak ponies
     ponies & rainbows
+    $ rollodeqc-gh-user-streak bob --details
+    ... detailed stats for bob
 ```
 
 
