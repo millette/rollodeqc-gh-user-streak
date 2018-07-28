@@ -53,7 +53,9 @@ $ rollodeqc-gh-user-streak --help
     rollodeqc-gh-user-streak [input]
 
   Options
-    --details  -d   Output last year's contributions count per day. [Default: false]
+    --details   -d    Output last year's contributions count per day. [Default: false]
+
+    --pretty    -p    Pretty output
 
   Examples
     $ rollodeqc-gh-user-streak
@@ -66,6 +68,6 @@ $ rollodeqc-gh-user-streak --help
 
 
 ## License
-AGPL-v3 © [Robin Millette](http://robin.millette.info)
+AGPL-v3 2016-2018 © [Robin Millette](http://robin.millette.info)
 
 [update-notifier]: <https://github.com/yeoman/update-notifier>

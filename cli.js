@@ -39,7 +39,9 @@ Usage
   $ rollodeqc-gh-user-streak [username] --details
 
 Options
-  --details  -d   Output last year's contributions count per day. [Default: false]
+  --details   -d    Output last year's contributions count per day. [Default: false]
+
+  --pretty    -p    Pretty output
 
 Examples
   $ rollodeqc-gh-user-streak
@@ -53,6 +55,10 @@ Examples
     details: {
       type: 'boolean',
       alias: 'd'
+    },
+    pretty: {
+      type: 'boolean',
+      alias: 'p'
     }
   }
 })
@@ -62,7 +68,7 @@ const username = cli.input[0] || 'millette'
 if (cli.flags.details) {
   rollodeqcGhUserStreak.fetchContribs(username)
     .then((response) => {
-      console.log(JSON.stringify(response, null, ' '))
+      console.log(JSON.stringify(response, null, cli.flags.pretty ? '  ': ''))
     })
 } else {
   rollodeqcGhUserStreak(username)

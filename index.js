@@ -46,10 +46,10 @@ const dailyContribs = (str) => {
   const dates = sorted.map((g) => g.date).slice(-2)
   if ((Date.parse(dates[1]) - Date.parse(dates[0])) > 90005000) {
     // day skipped!
-    return sorted.slice(1, -1)
+    return sorted.slice(1, -1).filter((x) => x.count)
   }
 
-  return sorted
+  return sorted.filter((x) => x.count)
 }
 
 const fetchContribs = (username) => {
