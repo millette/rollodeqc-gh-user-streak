@@ -2,7 +2,7 @@
 import test from 'ava'
 import fn from './'
 
-import { readFile } from 'fs'
+import { readFileSync } from 'fs'
 
 test('millette', async t => {
   const result = await fn('millette')
@@ -43,22 +43,16 @@ test('some commits', async t => {
   t.is(result.commits, 1603)
 })
 
-test('buggy svg', t => {
-  readFile('buggy-contrib.svg', 'utf8', (err, gg) => {
-    t.falsy(err)
-    fn.fetchContribs(gg).then(result => {
-      t.truthy(result.length <= 365)
-    })
-  })
+test('buggy svg', async t => {
+  const gg = readFileSync('buggy-contrib.svg', 'utf8')
+  const result = await fn.fetchContribs(gg)
+  t.truthy(result.length <= 365)
 })
 
-test('ok svg', t => {
-  readFile('ok-contrib.svg', 'utf8', (err, gg) => {
-    t.falsy(err)
-    fn.fetchContribs(gg).then(result => {
-      t.truthy(result.length >= 366)
-    })
-  })
+test('ok svg', async t => {
+  const gg = readFileSync('ok-contrib.svg', 'utf8')
+  const result = await fn.fetchContribs(gg)
+  t.truthy(result.length >= 366)
 })
 
 test('bad username', t => t.throws(fn('millette666'), 'Response code 404 (Not Found)'))
