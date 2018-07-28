@@ -39,7 +39,7 @@ Usage
   $ rollodeqc-gh-user-streak [username] --details
 
 Options
-  --details  -d   Output every streak. [Default: false]
+  --details  -d   Output last year's contributions count per day. [Default: false]
 
 Examples
   $ rollodeqc-gh-user-streak
