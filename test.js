@@ -2,7 +2,7 @@
 import test from 'ava'
 import fn from './'
 
-import fs from 'fs'
+import { readFile } from 'fs'
 
 test('millette', async t => {
   const result = await fn('millette')
@@ -44,7 +44,7 @@ test('some commits', async t => {
 })
 
 test('buggy svg', t => {
-  fs.readFile('buggy-contrib.svg', 'utf8', (err, gg) => {
+  readFile('buggy-contrib.svg', 'utf8', (err, gg) => {
     t.falsy(err)
     fn.fetchContribs(gg).then(result => {
       t.truthy(result.length <= 365)
@@ -53,7 +53,7 @@ test('buggy svg', t => {
 })
 
 test('ok svg', t => {
-  fs.readFile('ok-contrib.svg', 'utf8', (err, gg) => {
+  readFile('ok-contrib.svg', 'utf8', (err, gg) => {
     t.falsy(err)
     fn.fetchContribs(gg).then(result => {
       t.truthy(result.length >= 366)
