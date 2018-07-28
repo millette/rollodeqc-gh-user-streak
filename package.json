@@ -28,7 +28,7 @@
     "rollodeqc"
   ],
   "dependencies": {
-    "chalk": "^1.1.3",
+    "chalk": "^2.4.1",
     "got": "^6.7.1",
     "lodash.flatten": "^4.4.0",
     "lodash.sortby": "^4.7.0",
