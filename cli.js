@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /*
-Fetch github user commit streak.
+Fetch github user contribution streak.
 
 Copyright 2016
 Robin Millette <robin@millette.info>
@@ -36,13 +36,17 @@ updateNotifier({ pkg: require('./package.json') }).notify()
 
 const cli = meow([
   'Usage',
-  '  $ rollodeqc-gh-user-streak [username]',
+  '  $ rollodeqc-gh-user-streak [username] --details',
+  '',
+  'Note that --details must be the last argument.',
   '',
   'Examples',
   '  $ rollodeqc-gh-user-streak',
   '  ... stats for millette',
   '  $ rollodeqc-gh-user-streak bob',
-  '  ... stats for bob'
+  '  ... stats for bob',
+  '  $ rollodeqc-gh-user-streak bob --details',
+  '  ... detailed stats for bob'
 ])
 
 const username = cli.input[0] || 'millette'
@@ -56,16 +60,16 @@ if (cli.flags.details) {
   rollodeqcGhUserStreak(username)
     .then((response) => {
       if (!response.streaks.length) {
-        console.log('No commits in last 365 days.')
+        console.log('No contributions in last 365 days.')
         return
       }
       const latest = sort(response.streaks, 'begin').reverse()[0]
-      console.log(chalk.green(`Longest streak in a year: ${response.streaks[0].commits.length} days (${response.streaks[0].commits.reduce((p, c) => p + c)} commits), started ${response.streaks[0].begin}.`))
+      console.log(chalk.green(`Longest streak in a year: ${response.streaks[0].commits.length} days (${response.streaks[0].commits.reduce((p, c) => p + c)} contributions), started ${response.streaks[0].begin}.`))
       if (response.streaks[0].overlaps) {
         console.log(chalk.red.bold('Note that the streak may be longer since it started at least 365 days ago.'))
       }
       if (latest.begin !== response.streaks[0].begin) {
-        console.log(`Latest streak: ${latest.commits.length} days (${latest.commits.reduce((p, c) => p + c)} commits), started ${latest.begin}.`)
+        console.log(`Latest streak: ${latest.commits.length} days (${latest.commits.reduce((p, c) => p + c)} contributions), started ${latest.begin}.`)
       }
     })
     .catch((e) => {

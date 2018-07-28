@@ -2,10 +2,10 @@
 [![Build Status](https://travis-ci.org/millette/rollodeqc-gh-user-streak.svg?branch=master)](https://travis-ci.org/millette/rollodeqc-gh-user-streak)
 [![Coverage Status](https://coveralls.io/repos/github/millette/rollodeqc-gh-user-streak/badge.svg?branch=master)](https://coveralls.io/github/millette/rollodeqc-gh-user-streak?branch=master)
 [![Dependency Status](https://gemnasium.com/badges/github.com/millette/rollodeqc-gh-user-streak.svg)](https://gemnasium.com/github.com/millette/rollodeqc-gh-user-streak)
-> Fetch github user commit streak.
+> Fetch github user contribution streak.
 
 Since [Github changed the users profiles](https://github.com/blog/2173-more-contributions-on-your-profile)
-to put more emphasis on the present and less on history, they removed the popular commit streak count.
+to put more emphasis on the present and less on history, they removed the popular contribution streak count.
 This little script brings it back.
 
 ## Known limitations
