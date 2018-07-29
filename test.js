@@ -55,5 +55,11 @@ test('ok svg', async t => {
   t.is(result.length, 194)
 })
 
-test('bad username', t => t.throws(fn('millette666'), 'Response code 404 (Not Found)'))
-test('bad username type', t => t.throws(fn(666), 'The username argument should a string or an array of commits for a year.'))
+test('bad username', t =>
+  t.throws(fn('millette666'), 'Response code 404 (Not Found)'))
+
+test('bad username type', t =>
+  t.throws(
+    fn(666),
+    'The username argument should a string or an array of commits for a year.'
+  ))
