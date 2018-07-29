@@ -68,7 +68,7 @@ const username = cli.input[0] || 'millette'
 if (cli.flags.details) {
   rollodeqcGhUserStreak.fetchContribs(username)
     .then((response) => {
-      console.log(JSON.stringify(response, null, cli.flags.pretty ? '  ': ''))
+      console.log(JSON.stringify(response, null, cli.flags.pretty ? '  ' : ''))
     })
 } else {
   rollodeqcGhUserStreak(username)
