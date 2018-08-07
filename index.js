@@ -59,9 +59,9 @@ const fetchContribs = username => {
     )
   }
   if (username.indexOf('<svg ') === -1) {
-    return got(`https://github.com/users/${username}/contributions`)
-      .then(response => response.body)
-      .then(body => dailyContribs(body))
+    return got(`https://github.com/users/${username}/contributions`, {
+      retry: 5
+    }).then(({ body }) => dailyContribs(body))
   }
   return Promise.resolve(dailyContribs(username))
 }
