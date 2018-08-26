@@ -28,7 +28,7 @@ const sort = require('lodash.sortby')
 const flatten = require('lodash.flatten')
 
 const weeksRe = /<g transform="translate\([0-9]+, 0\)">([^]+?)<\/g>/gm
-const daysRe = /<rect class="day" width="10" height="10" x="-?[0-9]+" y="[0-9]+" fill="#[a-fA-F0-9]+" data-count="([0-9]+)" data-date="([0-9]{4}-[0-9]{2}-[0-9]{2})"\/>/g
+const daysRe = /<rect class="day" width="(?:8|10)" height="(?:8|10)" x="-?[0-9]+" y="[0-9]+" fill="#[a-fA-F0-9]+" data-count="([0-9]+)" data-date="([0-9]{4}-[0-9]{2}-[0-9]{2})"\/>/g
 
 const counter = days => {
   const counts = []
