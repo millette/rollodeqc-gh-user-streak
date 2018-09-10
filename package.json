@@ -27,7 +27,7 @@
   "keywords": ["cli-app", "cli", "rollodeqc"],
   "dependencies": {
     "chalk": "^2.4.1",
-    "got": "^9.2.0",
+    "got": "^9.2.1",
     "lodash.flatten": "^4.4.0",
     "lodash.sortby": "^4.7.0",
     "meow": "^5.0.0",
