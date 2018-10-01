@@ -38,9 +38,9 @@ test.skip('no commits', async t => {
 
 test('some commits', async t => {
   const result = await fn('Comarco')
-  t.is(result.streaks.length, 58)
-  t.is(result.commitDays, 208)
-  t.is(result.commits, 1412)
+  t.is(result.streaks.length, 59)
+  t.is(result.commitDays, 209)
+  t.is(result.commits, 1415)
 })
 
 test.skip('buggy svg', async t => {
