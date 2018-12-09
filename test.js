@@ -38,11 +38,11 @@ test.skip('no commits', async t => {
 
 test('some commits', async t => {
   const result = await fn('Comarco')
-  t.truthy(result.streaks.length > 50)
+  t.truthy(result.streaks.length > 30)
   t.truthy(result.streaks.length < 70)
-  t.truthy(result.commitDays > 200)
+  t.truthy(result.commitDays > 100)
   t.truthy(result.commitDays < 220)
-  t.truthy(result.commits > 1400)
+  t.truthy(result.commits > 400)
   t.truthy(result.commits < 1450)
 })
 
