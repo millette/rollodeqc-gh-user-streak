@@ -59,10 +59,10 @@ test('ok svg', async t => {
 })
 
 test('bad username', t =>
-  t.throws(fn('millette666'), 'Response code 404 (Not Found)'))
+  t.throwsAsync(fn('millette666'), 'Response code 404 (Not Found)'))
 
 test('bad username type', t =>
-  t.throws(
+  t.throwsAsync(
     fn(666),
     'The username argument should a string or an array of commits for a year.'
   ))
