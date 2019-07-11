@@ -11,7 +11,7 @@
   },
   "bin": "cli.js",
   "engines": {
-    "node": ">=8"
+    "node": ">=10.16.0"
   },
   "lint-staged": {
     "*.{js,json,md}": [
@@ -56,6 +56,6 @@
     "lodash": "^4.17.14",
     "nyc": "^14.1.0",
     "prettier-standard": "^9.1.1",
-    "standard": "^13.0.0"
+    "standard": "^13.0.1"
   }
 }
