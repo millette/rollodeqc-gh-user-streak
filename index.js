@@ -70,19 +70,21 @@ const findStreaks = contribs => {
   const s = []
   let g
   let lastDay = 0
-  let firstDay = contribs[0].date
+  const firstDay = contribs[0].date
 
-  contribs.filter(x => x.count).forEach(contrib => {
-    const dayN = Math.round(new Date(contrib.date).getTime() / 86400000)
-    if (dayN - lastDay > 1) {
-      if (g && g.length) {
-        s.push(g)
+  contribs
+    .filter(x => x.count)
+    .forEach(contrib => {
+      const dayN = Math.round(new Date(contrib.date).getTime() / 86400000)
+      if (dayN - lastDay > 1) {
+        if (g && g.length) {
+          s.push(g)
+        }
+        g = []
       }
-      g = []
-    }
-    g.push(contrib)
-    lastDay = dayN
-  })
+      g.push(contrib)
+      lastDay = dayN
+    })
   if (g && g.length) {
     s.push(g)
   }
