@@ -53,6 +53,7 @@
     "eslint": "^6.0.1",
     "husky": "^2.7.0",
     "lint-staged": "^9.2.0",
+    "lodash": "^4.17.14",
     "nyc": "^14.1.0",
     "prettier-standard": "^9.1.1",
     "standard": "^13.0.0"
