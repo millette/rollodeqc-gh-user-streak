@@ -13,22 +13,25 @@
   "engines": {
     "node": ">=10.16.0"
   },
+  "scripts": {
+    "test": "nyc ava --no-power-assert",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
+  },
   "lint-staged": {
-    "*.{js,json,md}": [
-      "prettier-standard",
+    "*.{html,js,json,md,mdx}": [
+      "prettier --write",
       "git add"
     ]
-  },
-  "scripts": {
-    "lint": "standard",
-    "format": "prettier-standard '**/*.+(js|json|md)'",
-    "test": "standard && nyc ava --no-power-assert",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "prettier": {
+    "semi": false,
+    "trailingComma": "es5",
+    "arrowParens": "always"
   },
   "files": [
     "index.js",
@@ -50,12 +53,9 @@
   "devDependencies": {
     "ava": "^2.2.0",
     "coveralls": "^3.0.5",
-    "eslint": "^6.0.1",
     "husky": "2.7.0",
     "lint-staged": "^9.2.0",
-    "lodash": "^4.17.14",
     "nyc": "^14.1.0",
-    "prettier-standard": "^9.1.1",
-    "standard": "^13.0.1"
+    "prettier": "^1.18.2"
   }
 }
